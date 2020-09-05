@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/registerations.css' %}">
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar navbar-expand-lg navbar navbar-dark ">
+      <div class="container" >
+      <ul class="navbar-nav mr-auto">
+
+
+                    {% if user.is_authenticated %}
+                       <li class="nav-item active"><a class="navbar-brand" href="{% url 'user_logout' %}">Logout</a></li>
+                     {% else %}
+                        <li class="nav-item active"><a class="navbar-brand" href="{% url 'appTwo:user_login' %}">Login</a><li>
+                     {% endif %}
+
+                   </ul>
+                 </div>
+
+                 </nav>
+                 <br><br><br>
+
+    <h1>Welcome to your page</h1>
+    {% for value in com %}
+      <img id="imgp" height="200" width="200" style="border-radius:50%;" src="/media/{{value.userprofileinfo.profile_pic}}" alt="No Photo"><br><br>
+    <h2>Email:{{value.email}}</h2><br>
+    <h2>Username:{{value.username}}</h2><br>
+    <h2>Age:{{value.userprofileinfo.age}}</h2><br>
+    <h2>unique_id:{{value.userprofileinfo.unique_id}}</h2><br>
+    {% endfor%}
+
+  </body>
+</html>
